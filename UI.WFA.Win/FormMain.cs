@@ -9,11 +9,17 @@ using System.Windows.Forms;
 
 namespace UI.WFA.Win
 {
-    public partial class MainForm : Form
+    public partial class FormMain : Form
     {
+        #region Properties
+
+        public int CarregarWidth { get; set; }
+
+        #endregion
+
         #region Constructors
 
-        public MainForm()
+        public FormMain()
         {
             InitializeComponent();
             this.Carregar();
@@ -44,20 +50,21 @@ namespace UI.WFA.Win
 
         private void Carregar()
         {
-            this.IsLoadVisible(true);
-            this.IsButtonBackVisible(false);
+            this.CarregarWidth = this.progressBar.Size.Width;
+            this.IsCarregarVisible(true);
+            this.IsButtonVoltarVisible(false);
         }
 
         private void Avancar()
         {
-            this.IsButtonBackVisible(true);
-            this.IsButtonNextFinish(true);
+            this.IsButtonVoltarVisible(true);
+            this.IsButtonFinalizar(true);
         }
 
         private void Voltar()
         {
-            this.IsButtonBackVisible(false);
-            this.IsButtonNextFinish(false);
+            this.IsButtonVoltarVisible(false);
+            this.IsButtonFinalizar(false);
         }
 
         private void Fechar(FormClosingEventArgs e)
@@ -80,27 +87,27 @@ namespace UI.WFA.Win
                 dialogResult.Equals(DialogResult.None);
         }
 
-        public void IsLoadVisible(Boolean visible)
+        public void IsCarregarVisible(Boolean isVisible)
         {
-            this.progressBarLoad.Visible =
-                this.labelLoad.Visible = visible;
+            this.progressBar.Visible =
+                this.labelProgressBar.Visible = isVisible;
 
-            this.progressBarLoad.Value = visible ? 50 : 0;
+            this.progressBar.Value = isVisible ? 50 : 0;
         }
 
-        public void IsButtonBackVisible(bool visible)
+        public void IsButtonVoltarVisible(bool isVisible)
         {
-            this.buttonBack.Visible = visible;
-            this.progressBarLoad.Size =
-                this.labelLoad.Size =
-                    visible ?
-                        new Size(528, 10) :
-                        new Size(528 + this.buttonBack.Size.Width, 10);
+            this.buttonVoltar.Visible = isVisible;
+            this.progressBar.Size =
+                this.labelProgressBar.Size =
+                    isVisible ?
+                        new Size(this.CarregarWidth, 10) :
+                        new Size(this.CarregarWidth + this.buttonVoltar.Size.Width, 10);
         }
 
-        public void IsButtonNextFinish(Boolean finish)
+        public void IsButtonFinalizar(Boolean isFinish)
         {
-            this.buttonNext.Text = finish ? "Concluir" : "Avançar";
+            this.buttonAvancar.Text = isFinish ? "Concluir" : "Avançar";
         }
 
         #endregion
