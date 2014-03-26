@@ -51,9 +51,9 @@
       <Project>{21d99480-915d-40f4-b35b-f037c99b03d9}</Project>
       <Name>Helper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\Model\TO.Model.csproj">
       <Project>{88674f42-1a4d-4060-95a9-84ba38be36da}</Project>
-      <Name>Model</Name>
+      <Name>TO.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
