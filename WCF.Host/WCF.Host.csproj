@@ -42,6 +42,24 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO.Contract\BO.Contract.csproj">
+      <Project>{d66e7808-277b-4111-9f05-c3f155dd314b}</Project>
+      <Name>BO.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BO.Service\BO.Service.csproj">
+      <Project>{01afe50c-92dc-40f4-b675-ef10970c0d61}</Project>
+      <Name>BO.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{21d99480-915d-40f4-b35b-f037c99b03d9}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{88674f42-1a4d-4060-95a9-84ba38be36da}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
