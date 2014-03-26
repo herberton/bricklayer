@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{88674F42-1A4D-4060-95A9-84BA38BE36DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TO.Model", "Model\TO.Model.csproj", "{88674F42-1A4D-4060-95A9-84BA38BE36DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{21D99480-915D-40F4-B35B-F037C99B03D9}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO.Contract", "BO.Contract\BO.Contract.csproj", "{D66E7808-277B-4111-9F05-C3F155DD314B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF.Host", "WCF.Host\WCF.Host.csproj", "{48D39076-6DA3-4414-9CB7-E449F0964266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB.Host", "WEB.Host\WEB.Host.csproj", "{827CED57-C103-46C3-A8D6-34C08F3E03DE}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -47,6 +49,10 @@ Global
 		{48D39076-6DA3-4414-9CB7-E449F0964266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48D39076-6DA3-4414-9CB7-E449F0964266}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48D39076-6DA3-4414-9CB7-E449F0964266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827CED57-C103-46C3-A8D6-34C08F3E03DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827CED57-C103-46C3-A8D6-34C08F3E03DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827CED57-C103-46C3-A8D6-34C08F3E03DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827CED57-C103-46C3-A8D6-34C08F3E03DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
