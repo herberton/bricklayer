@@ -47,6 +47,7 @@ namespace WCF.Host
         {
             try
             {
+                Program.CreateDataBase();
                 Program.OpenTransactionServiceHost();
                 Console.WriteLine("All Services Started...");
                 Console.WriteLine("Press [ESC] To Stop All Services And Exit...");
