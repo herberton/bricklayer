@@ -63,7 +63,7 @@ namespace WEB.Host.Controllers
 
         public ActionResult TransactionEdit()
         {
-            return View();
+            return View(); 
         }
 
         public ActionResult TransactionDelete()
