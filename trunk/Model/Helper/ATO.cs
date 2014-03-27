@@ -17,8 +17,7 @@ namespace TO.Model.Helper
         #region Property
 
         [DataMember]
-        [Column(IsPrimaryKey = true)]
-        public Int64 ID { get; set; }
+        public abstract Int64 ID { get; set; }
 
         #endregion
 

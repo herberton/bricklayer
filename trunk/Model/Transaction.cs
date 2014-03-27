@@ -16,9 +16,14 @@ namespace TO.Model
     {
         #region Property
 
+        [DataMember]
+        [Column(IsPrimaryKey = true)]
+        public override long ID { get; set; }
+        [DataMember]
         [Column]
         public String Name { get; set; }
 
         #endregion
+        
     }
 }
