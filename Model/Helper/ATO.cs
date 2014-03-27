@@ -6,14 +6,17 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Linq.Mapping;
+using System.Runtime.Serialization;
 
 namespace TO.Model.Helper
 {
+    [DataContract]
     public abstract class ATO<T>
         where T : ATO<T>, new()
     {
         #region Property
 
+        [DataMember]
         [Column(IsPrimaryKey = true)]
         public Int64 ID { get; set; }
 
