@@ -25,7 +25,6 @@ namespace DAO.Helper
             try
             {
                 this.Table.InsertOnSubmit(to);
-                DataBase.SubmitChanges();
                 return to;
             }
             catch (Exception ex)
@@ -40,7 +39,6 @@ namespace DAO.Helper
             try
             {
                 this.Select(to.ID).Merge(to);
-                DataBase.SubmitChanges();
                 return to;
             }
             catch (Exception ex)
@@ -65,7 +63,6 @@ namespace DAO.Helper
                 }
 
                 this.Table.DeleteOnSubmit(this.Select(to.ID));
-                DataBase.SubmitChanges();
             }
             catch (Exception ex)
             {
@@ -102,7 +99,7 @@ namespace DAO.Helper
         {
             try
             {
-                if (id == null || id == 0)
+                if (id == 0)
                 {
                     return null;
                 }
