@@ -1,5 +1,6 @@
 ﻿using BO.Contract;
 using BO.Service;
+using DAO.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace WCF.Host
         #region Variable
 
         private static ServiceHost transactionServiceHost;
+        private static EntityDataContext dataContext;
 
         #endregion
 
@@ -60,6 +62,18 @@ namespace WCF.Host
             }
         }
 
+
+        private static void CreateDataBase()
+        {
+            try
+            {
+                Program.dataContext = DataBase.DataContext;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         private static void OpenTransactionServiceHost()
         {

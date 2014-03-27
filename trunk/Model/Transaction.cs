@@ -14,6 +14,10 @@ namespace TO.Model
     [Table]
     public class Transaction : ATO<Transaction>
     {
+        #region Property
 
+        public String Name { get; set; }
+
+        #endregion
     }
 }

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TransactionBO" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_ITransactionBO_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9091/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9091/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9091/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TO.Model" />
+      <xsd:import schemaLocation="http://localhost:9091/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TO.Model.Helper" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITransactionBO_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectAllList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllList" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectAllList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectList" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectID" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_SelectID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_Select_InputMessage">
+    <wsdl:part name="parameters" element="tns:Select" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionBO_Select_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITransactionBO">
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/Save" message="tns:ITransactionBO_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/SaveResponse" message="tns:ITransactionBO_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/Delete" message="tns:ITransactionBO_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/DeleteResponse" message="tns:ITransactionBO_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectAllList" message="tns:ITransactionBO_SelectAllList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectAllListResponse" message="tns:ITransactionBO_SelectAllList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectList" message="tns:ITransactionBO_SelectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectListResponse" message="tns:ITransactionBO_SelectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectID" message="tns:ITransactionBO_SelectID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectIDResponse" message="tns:ITransactionBO_SelectID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Select">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOOf_Transaction/Select" message="tns:ITransactionBO_Select_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOOf_Transaction/SelectResponse" message="tns:ITransactionBO_Select_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_ITransactionBO" type="tns:ITransactionBO">
+    <wsp:PolicyReference URI="#NetTcpBinding_ITransactionBO_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Save">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/Save" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllList">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectAllList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectList">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectID">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select">
+      <soap12:operation soapAction="http://tempuri.org/IBOOf_Transaction/Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ITransactionBO" type="tns:ITransactionBO">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllList">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectAllList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectList">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectID">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/SelectID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select">
+      <soap:operation soapAction="http://tempuri.org/IBOOf_Transaction/Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransactionBO">
+    <wsdl:port name="NetTcpBinding_ITransactionBO" binding="tns:NetTcpBinding_ITransactionBO">
+      <soap12:address location="net.tcp://localhost:9090/TransactionBO" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:9090/TransactionBO</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>WINT45P\Herberton</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ITransactionBO" binding="tns:BasicHttpBinding_ITransactionBO">
+      <soap:address location="http://localhost:9091/TransactionBO" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,13 +27,15 @@ namespace WEB.Host
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "CRUD", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }
 
         protected void Application_Start()
         {
+            Process.Start("C:\\workspace\\ms.net\\_lab\\Bricklayer\\WCF.Host\\bin\\Debug\\WCF.Host.exe");
+
             AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default
