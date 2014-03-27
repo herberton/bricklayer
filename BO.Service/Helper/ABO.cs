@@ -8,10 +8,12 @@ using System.Data.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TO.Model.Helper;
+using System.Transactions;
+using BO.Contract.Helper;
 
 namespace BO.Service.Helper
 {
-    public abstract class ABO<TO, DAO>
+    public abstract class ABO<TO, DAO> : IBO<TO>
         where TO : ATO<TO>, new()
         where DAO : ADAO<TO>, new()
     {
@@ -27,17 +29,26 @@ namespace BO.Service.Helper
         {
             try
             {
-                if (to == null)
+                using (TransactionScope transactionScope = new TransactionScope())
                 {
-                    return null;
-                }
+                    if (to == null)
+                    {
+                        return null;
+                    }
 
-                if (to.HasID())
-                {
-                    to = this.DataAccessObject.Update(to);
-                }
+                    if (to.HasID())
+                    {
+                        to = this.DataAccessObject.Update(to);
+                    }
+                    else
+                    {
+                        to = this.DataAccessObject.Insert(to);
+                    }
 
-                to = this.DataAccessObject.Insert(to);
+                    DataBase.SubmitChanges();
+
+                    transactionScope.Complete();
+                }
             }
             catch (Exception ex)
             {
@@ -51,7 +62,12 @@ namespace BO.Service.Helper
         {
             try
             {
-                this.DataAccessObject.Delete(to);
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    this.DataAccessObject.Delete(to);
+                    DataBase.SubmitChanges();
+                    transactionScope.Complete();
+                }
             }
             catch (Exception ex)
             {
@@ -87,16 +103,35 @@ namespace BO.Service.Helper
             return new List<TO>();
         }
 
+        public TO Select(Int64 id)
+        {
+            try
+            {
+                return this.DataAccessObject.Select(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
         public TO Select(TO to)
         {
             try
             {
-                IList<TO> toList = this.DataAccessObject.SelectList(to);
-
-                if (toList != null && toList.Count > 0)
+                if (to == null)
                 {
-                    return toList[0];
+                    return null;
                 }
+
+                if (!to.HasID())
+                {
+                    return null;
+                }
+
+                return this.Select(to.ID);
             }
             catch (Exception ex)
             {
