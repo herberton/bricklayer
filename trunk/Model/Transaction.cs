@@ -16,6 +16,7 @@ namespace TO.Model
     {
         #region Property
 
+        [Column]
         public String Name { get; set; }
 
         #endregion
