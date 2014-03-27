@@ -40,10 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB\EntityContext.cs" />
-    <Compile Include="Pattern\ABO.cs" />
-    <Compile Include="Pattern\ADAO.cs" />
-    <Compile Include="Pattern\ATO.cs" />
     <Compile Include="Pattern\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

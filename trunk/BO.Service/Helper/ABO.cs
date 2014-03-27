@@ -1,10 +1,15 @@
-﻿using System;
+﻿using DAO.DB;
+using DAO.Helper;
+using Helper.Pattern;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TO.Model.Helper;
 
-namespace Helper.Pattern
+namespace BO.Service.Helper
 {
     public abstract class ABO<TO, DAO>
         where TO : ATO<TO>, new()
@@ -29,11 +34,10 @@ namespace Helper.Pattern
 
                 if (to.HasID())
                 {
-                    return this.DataAccessObject.Update(to);
+                    to = this.DataAccessObject.Update(to);
                 }
 
-                return this.DataAccessObject.Insert(to);
-
+                to = this.DataAccessObject.Insert(to);
             }
             catch (Exception ex)
             {
