@@ -75,7 +75,7 @@ namespace BO.Service.Helper
             }
         }
 
-        public IList<TO> SelectList()
+        public IList<TO> SelectAllList()
         {
             try
             {
@@ -103,7 +103,7 @@ namespace BO.Service.Helper
             return new List<TO>();
         }
 
-        public TO Select(Int64 id)
+        public TO SelectID(Int64 id)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace BO.Service.Helper
                     return null;
                 }
 
-                return this.Select(to.ID);
+                return this.SelectID(to.ID);
             }
             catch (Exception ex)
             {
