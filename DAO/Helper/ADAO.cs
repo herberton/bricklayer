@@ -9,122 +9,145 @@ using TO.Model.Helper;
 
 namespace DAO.Helper
 {
-    public abstract class ADAO<T>
-        where T : ATO<T>, new()
-    {
-        #region Property
+	public abstract class ADAO<T>
+		where T : ATO<T>, new()
+	{
+		#region Property
 
-        public Table<T> Table { get { return DataBase.GetTable<T>(); } }
+		public Table<T> Table { get { return DataBase.GetTable<T>(); } }
 
-        #endregion
+		#endregion
 
-        #region Abstract
+		#region Method
 
-        public T Insert(T to)
-        {
-            try
-            {
-                this.Table.InsertOnSubmit(to);
-                return to;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+		public Int64 NextID()
+		{
+			try
+			{
+				IQueryable<T> query = (from entity in this.Table select entity).OrderByDescending(entity => entity.ID);
 
-            return null;
-        }
-        public T Update(T to)
-        {
-            try
-            {
-                this.Select(to.ID).Merge(to);
-                return to;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+				if (query.Count() <= 0)
+				{
+					return 1;
+				}
 
-            return null;
-        }
-        public void Delete(T to)
-        {
-            try
-            {
-                if (to == null)
-                {
-                    return;
-                }
+				return query.First().ID + 1;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
 
-                if (!to.HasID())
-                {
-                    return;
-                }
+			return new Random().Next();
+		}
 
-                this.Table.DeleteOnSubmit(this.Select(to.ID));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+		public T Insert(T to)
+		{
+			try
+			{
+				to.ID = this.NextID();
+				this.Table.InsertOnSubmit(to);
+				return to;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
 
-        public IList<T> SelectList(T to)
-        {
-            try
-            {
-                if (to == null)
-                {
-                    to = new T();
-                }
+			return null;
+		}
 
-                IQueryable<T> query =
-                    from entity
-                    in this.Table
-                    where !to.HasID() || entity.ID == to.ID
-                    select entity;
+		public T Update(T to)
+		{
+			try
+			{
+				this.Select(to.ID).Merge(to);
+				return to;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
 
-                return query.ToList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+			return null;
+		}
+		public void Delete(T to)
+		{
+			try
+			{
+				if (to == null)
+				{
+					return;
+				}
 
-            return new List<T>();
-        }
+				if (!to.HasID())
+				{
+					return;
+				}
 
-        public T Select(Int64 id)
-        {
-            try
-            {
-                if (id == 0)
-                {
-                    return null;
-                }
+				this.Table.DeleteOnSubmit(this.Select(to.ID));
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+		}
 
-                IQueryable<T> query =
-                    from entity
-                    in this.Table
-                    where entity.ID == id
-                    select entity;
+		public IList<T> SelectList(T to)
+		{
+			try
+			{
+				if (to == null)
+				{
+					to = new T();
+				}
 
-                if (query.Count() <= 0)
-                {
-                    return null;
-                }
+				IQueryable<T> query =
+					from entity
+					in this.Table
+					where !to.HasID() || entity.ID == to.ID
+					select entity;
 
-                return query.First();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+				return query.ToList();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
 
-            return null;
-        }
+			return new List<T>();
+		}
 
-        #endregion
-    }
+		public T Select(Int64 id)
+		{
+			try
+			{
+				if (id == 0)
+				{
+					return null;
+				}
+
+				IQueryable<T> query =
+					from entity
+					in this.Table
+					where entity.ID == id
+					select entity;
+
+				if (query.Count() <= 0)
+				{
+					return null;
+				}
+
+				return query.First();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+
+			return null;
+		}
+
+		#endregion
+	}
 }

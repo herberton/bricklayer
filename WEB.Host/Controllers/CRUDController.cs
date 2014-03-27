@@ -50,7 +50,7 @@ namespace WEB.Host.Controllers
                 using (TransactionBOClient client = new TransactionBOClient("NetTcpBinding_ITransactionBO"))
                 {
                     client.Save(to);
-                    return View("TransactionList");
+                    return View("TransactionList", CollectionHelper.ToList(client.SelectAllList()));
                 }
             }
             catch (Exception ex)
