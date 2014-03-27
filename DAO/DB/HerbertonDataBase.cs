@@ -1,4 +1,5 @@
 ﻿
+using DAO.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
@@ -9,8 +10,14 @@ using TO.Model;
 
 namespace DAO.DB
 {
-    public class EntityDataContext : DataContext
+    public class HerbertonDataBase : DataContext
     {
+        #region Constant
+
+        public const String CONNECTION = "Data Source=WINT45P;Integrated Security=True";
+
+        #endregion
+
         #region TransactionTable
 
         private Table<Transaction> transactionTable;
@@ -22,7 +29,7 @@ namespace DAO.DB
                 {
                     if (this.transactionTable == null)
                     {
-                        this.transactionTable = DataBase.DataContext.GetTable<Transaction>();
+                        this.transactionTable = DataBaseHelper.DataBase.GetTable<Transaction>();
                     }
 
                     return this.transactionTable;
@@ -34,7 +41,7 @@ namespace DAO.DB
 
         #region Constructor
 
-        public EntityDataContext(String fileOrServerOrConnection) : base(fileOrServerOrConnection) { }
+        public HerbertonDataBase() : base(HerbertonDataBase.CONNECTION) { }
 
         #endregion
     }

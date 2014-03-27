@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB\DataBase.cs" />
-    <Compile Include="DB\EntityDataContext.cs" />
+    <Compile Include="Helper\DataBaseHelper.cs" />
+    <Compile Include="DB\HerbertonDataBase.cs" />
     <Compile Include="Helper\ADAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionDAO.cs" />

@@ -14,7 +14,7 @@ namespace DAO.Helper
 	{
 		#region Property
 
-		public Table<T> Table { get { return DataBase.GetTable<T>(); } }
+		public Table<T> Table { get { return DataBaseHelper.GetTable<T>(); } }
 
 		#endregion
 
