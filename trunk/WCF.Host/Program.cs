@@ -68,20 +68,9 @@ namespace WCF.Host
         {
             try
             {
-                Console.WriteLine("Would You Like To Drop And Create An HerbertonDataBase?");
-                Console.WriteLine("Press [Y] Yes Or [N] No...");
-
-                if (Console.ReadKey().Key == ConsoleKey.Y)
-                {
-                    Console.WriteLine("\n");
-                    Console.WriteLine("Dropping  And Creating An HerbertonDataBase...");
-                    DataBaseHelper.DropAndCreateDataBase();
-                    Console.WriteLine("HerbertonDataBase Created With Successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("\n");
-                }
+                Console.WriteLine("Dropping  And Creating An HerbertonDataBase...");
+                DataBaseHelper.DropAndCreateDataBase();
+                Console.WriteLine("HerbertonDataBase Created With Successfully!");
                 
             }
             catch (Exception ex)

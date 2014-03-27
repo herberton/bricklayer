@@ -76,7 +76,6 @@ namespace DAO.Helper
                 {
                     DataBaseHelper.DataBase.DeleteDatabase();
                 }
-
                 DataBaseHelper.DataBase.CreateDatabase();
             }
             catch (Exception ex)
