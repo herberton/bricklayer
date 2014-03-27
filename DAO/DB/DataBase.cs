@@ -13,35 +13,40 @@ namespace DAO.DB
     {
         #region Constant
 
-        public const String CONNECTION = "Data Source=WINT45P;Initial Catalog=Exercise;Integrated Security=True";
+        public const String CONNECTION = "Data Source=WINT45P;Integrated Security=True";
 
         #endregion
 
         #region Variable
 
-        private static DataContext dataContext;
+        private static EntityDataContext dataContext;
 
         #endregion
 
         #region Property
 
-        public static DataContext DataContext
+        public static EntityDataContext DataContext
         {
             get
             {
-                lock (typeof(DataBase))
+                lock (typeof(EntityDataContext))
                 {
                     if (DataBase.dataContext == null)
                     {
-                        DataBase.dataContext = new DataContext(DataBase.CONNECTION);
+                        DataBase.dataContext = new EntityDataContext(DataBase.CONNECTION);
+
+                        if (DataBase.dataContext.DatabaseExists())
+                        {
+                            DataBase.dataContext.DeleteDatabase();
+                        }
+
+                        DataBase.dataContext.CreateDatabase();
                     }
                 }
 
                 return DataBase.dataContext;
             }
         }
-
-        public static EntityMapping EntityMapping { get { return Singleton<EntityMapping>.Instance; } }
 
         #endregion
 
@@ -59,11 +64,11 @@ namespace DAO.DB
             {
                 Type type = typeof(T);
 
-                foreach (PropertyInfo property in DataBase.EntityMapping.GetType().GetProperties())
+                foreach (PropertyInfo property in DataBase.DataContext.GetType().GetProperties())
                 {
                     if (property.Name.Replace("Table", String.Empty).Equals(type.Name))
                     {
-                        return (Table<T>)property.GetValue(DataBase.EntityMapping);
+                        return (Table<T>)property.GetValue(DataBase.DataContext);
                     }
                 }
             }

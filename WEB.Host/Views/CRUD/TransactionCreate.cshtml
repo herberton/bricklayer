@@ -1,0 +1,27 @@
+﻿@model TO.Model.Transaction
+@{
+    ViewBag.Title = "Criar Transação";
+}
+
+<h2>Criar Transação</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Transação</legend>
+        @Html.HiddenFor(model => model.ID)
+        <div>Name:</div>
+        <div>@Html.EditorFor(model => model.Name)</div>
+        <p>
+            <input type="submit" value="TransactionList" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "TransactionList")
+</div>

@@ -9,7 +9,7 @@ using TO.Model;
 
 namespace DAO.DB
 {
-    public class EntityMapping
+    public class EntityDataContext : DataContext
     {
         #region TransactionTable
 
@@ -29,6 +29,12 @@ namespace DAO.DB
                 }
             }
         }
+
+        #endregion
+
+        #region Constructor
+
+        public EntityDataContext(String fileOrServerOrConnection) : base(fileOrServerOrConnection) { }
 
         #endregion
     }
