@@ -45,7 +45,7 @@ namespace BO.Service.Helper
                         to = this.DataAccessObject.Insert(to);
                     }
 
-                    DataBase.SubmitChanges();
+                    DataBaseHelper.SubmitChanges();
 
                     transactionScope.Complete();
                 }
@@ -65,7 +65,7 @@ namespace BO.Service.Helper
                 using (TransactionScope transactionScope = new TransactionScope())
                 {
                     this.DataAccessObject.Delete(to);
-                    DataBase.SubmitChanges();
+                    DataBaseHelper.SubmitChanges();
                     transactionScope.Complete();
                 }
             }

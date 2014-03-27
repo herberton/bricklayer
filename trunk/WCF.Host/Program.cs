@@ -1,6 +1,7 @@
 ﻿using BO.Contract;
 using BO.Service;
 using DAO.DB;
+using DAO.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,6 @@ namespace WCF.Host
         #region Variable
 
         private static ServiceHost transactionServiceHost;
-        private static EntityDataContext dataContext;
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace WCF.Host
         {
             try
             {
-                Program.CreateDataBase();
+                Program.DropAndCreateDataBase();
                 Program.OpenTransactionServiceHost();
                 Console.WriteLine("All Services Started...");
                 Console.WriteLine("Press [ESC] To Stop All Services And Exit...");
@@ -64,11 +64,25 @@ namespace WCF.Host
         }
 
 
-        private static void CreateDataBase()
+        private static void DropAndCreateDataBase()
         {
             try
             {
-                Program.dataContext = DataBase.DataContext;
+                Console.WriteLine("Would You Like To Drop And Create An HerbertonDataBase?");
+                Console.WriteLine("Press [Y] Yes Or [N] No...");
+
+                if (Console.ReadKey().Key == ConsoleKey.Y)
+                {
+                    Console.WriteLine("\n");
+                    Console.WriteLine("Dropping  And Creating An HerbertonDataBase...");
+                    DataBaseHelper.DropAndCreateDataBase();
+                    Console.WriteLine("HerbertonDataBase Created With Successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("\n");
+                }
+                
             }
             catch (Exception ex)
             {
